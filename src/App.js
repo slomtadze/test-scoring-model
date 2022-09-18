@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from "./App.module.css";
+import Inputs from "./inputs/Inputs";
+import Selects from "./Selects/Selects";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <div className={styles.wrapper}>
+        <h1>სქორინგი</h1>
+        <Selects />
+        <h1>კითხვები</h1>
+        <Inputs />
+      </div>
     </div>
   );
 }

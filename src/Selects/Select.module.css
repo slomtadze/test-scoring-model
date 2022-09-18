@@ -1,0 +1,17 @@
+.sub-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  height: 50px;
+}
+
+.sub-box label {
+  text-align: center;
+}
+
+.sub-box select {
+  padding: 2px 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
