@@ -29,10 +29,10 @@ const businessSlice = createSlice({
       state.details = action.payload;
     },
     getQuestionValues(state, action) {
-      const existingQuestion = state.details.questions.find(
-        (id) => id == action.payload.id
+      const index = state.details.questions.findIndex(
+        (question) => question.id === action.payload.id
       );
-      state.details.questions[existingQuestion].value = action.payload.value;
+      state.details.questions[index].value = action.payload.value;
     },
   },
 });
