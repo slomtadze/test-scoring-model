@@ -35,20 +35,20 @@ const Selects = (props) => {
   return (
     <div className={styles.box}>
       <Select
-        label="დარგი"
-        header="--აირჩიეთ დარგი--"
+        label="სექტორი"
+        header="--აირჩიეთ სექტორი--"
         options={fieldArray}
         onChange={fieldChangeHandler}
       />
       <Select
-        label="ქვედარგი"
-        header="--აირჩიეთ ქვედარგი--"
+        label="დარგი"
+        header="--აირჩიეთ დარგი--"
         options={subFieldOptions}
         onChange={subFieldChangeHandler}
       />
       <Select
-        label="სექტორი"
-        header="--აირჩიეთ სექტორი--"
+        label="ქვედარგი"
+        header="--აირჩიეთ ქვედარგი--"
         options={sectorOptions}
         onChange={sectorChangeHandler}
       />
