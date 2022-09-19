@@ -6,3 +6,17 @@
   flex-wrap: wrap;
   margin: 20px 0px;
 }
+
+.btn {
+  background-color: brown;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: #fff;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: red;
+}
