@@ -16,7 +16,11 @@ export const sectorArray = {
       minProfit: 100,
       maxProfit: 200,
       exp: 10,
-      questions: [{ q: "ჰექტარი" }, { q: "მოსავლიანობა" }, { q: "ფასი" }],
+      questions: [
+        { q: "ჰექტარი", value: "", id: 1 },
+        { q: "მოსავლიანობა", value: "", id: 2 },
+        { q: "ფასი", value: "", id: 3 },
+      ],
     },
     {
       name: "ხორბალი",
@@ -24,10 +28,10 @@ export const sectorArray = {
       maxProfit: 250,
       exp: 20,
       questions: [
-        { q: "ჰექტარი" },
-        { q: "მოსავლიანობა" },
-        { q: "ფასი" },
-        { q: "სხვა ხორბალი" },
+        { q: "ჰექტარი", value: "" },
+        { q: "მოსავლიანობა", value: "" },
+        { q: "ფასი", value: "" },
+        { q: "სხვა ხორბალი", value: "" },
       ],
     },
     {

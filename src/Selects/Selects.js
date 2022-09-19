@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addDetails, addSubField } from "../store/Question-slice";
+import { addDetails, addField, addSubField } from "../store/Question-slice";
 import Select from "./Select";
 
 import styles from "./Selects.module.css";
@@ -16,6 +16,7 @@ const Selects = (props) => {
 
   const fieldChangeHandler = (value) => {
     setSubFieldOptions(subFieldArray[value]);
+    dispatch(addField(value));
   };
 
   const subFieldChangeHandler = (value) => {
