@@ -1,32 +1,56 @@
-import React from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { calculate } from "../Helpers/helpers";
+import useCalculate from "../Hooks/Use-Calculate";
 import Input from "./Input";
 
 import styles from "./Inputs.module.css";
 
 const Inputs = (props) => {
-  const questions = useSelector((state) => state.business.subField.questions);
+  const [netProfit, setNetProfit] = useState("");
   const { sector, field, subField } = useSelector((state) => state.business);
+  const question4 = subField.questions[3] ? subField.questions[3].value : null;
+  const question5 = subField.questions[4] ? subField.questions[4].value : null;
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(sector, field, subField);
+    calculate(
+      setNetProfit,
+      sector,
+      field,
+      subField.name,
+      subField.minProfit,
+      subField.maxProfit,
+      subField.exp,
+      subField.questions[0].value,
+      subField.questions[1].value,
+      subField.questions[2].value,
+      question4,
+      question5
+    );
   };
 
   return (
-    <form onSubmit={formSubmitHandler}>
-      <div className={styles.box}>
-        {questions &&
-          questions.map((question) => {
-            if (question.q) {
-              return (
-                <Input label={question.q} id={question.id} key={question.id} />
-              );
-            }
-          })}
-      </div>
-      {questions && <button className={styles.btn}>გამოთვლა</button>}
-    </form>
+    <Fragment>
+      <form onSubmit={formSubmitHandler}>
+        <div className={styles.box}>
+          {subField.questions &&
+            subField.questions.map((question) => {
+              if (question.q) {
+                return (
+                  <Input
+                    label={question.q}
+                    id={question.id}
+                    key={question.id}
+                  />
+                );
+              }
+            })}
+        </div>
+        {subField.questions && <button className={styles.btn}>გამოთვლა</button>}
+      </form>
+      <p>{netProfit}</p>
+    </Fragment>
   );
 };
 
