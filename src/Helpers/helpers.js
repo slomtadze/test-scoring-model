@@ -15,11 +15,11 @@ export const calculate = (
   const minProfit = min * val1;
   const maxProfit = max * val1;
   const checkRes = (res) => {
-    console.log(minProfit, maxProfit, res);
-    if (minProfit <= res <= maxProfit) {
-      setNetProfit("მოგება სცდება დასაშვებ რეინჯს");
+    console.log(minProfit, res, maxProfit);
+    if (minProfit <= res && res <= maxProfit) {
+      setNetProfit(res.toFixed(0));
     } else {
-      setNetProfit(res);
+      setNetProfit("მოგება სცდება დასაშვებ რეინჯს");
     }
   };
   let result = null;
@@ -35,7 +35,6 @@ export const calculate = (
           value5 *
           ((100 - exp) / 100)) /
         12;
-      console.log(typeof +val1);
       checkRes(result);
       break;
     case "ვაჭრობა":
