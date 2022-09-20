@@ -52,6 +52,6 @@ const useCalculate = (
   }
 
   return {
-    result,
+    netProfit,
   };
 };

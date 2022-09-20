@@ -6,10 +6,11 @@ import styles from "./Inputs.module.css";
 
 const Inputs = (props) => {
   const questions = useSelector((state) => state.business.subField.questions);
+  const { sector, field, subField } = useSelector((state) => state.business);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    console.log(questions);
+    console.log(sector, field, subField);
   };
 
   return (
