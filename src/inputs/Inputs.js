@@ -5,7 +5,7 @@ import Input from "./Input";
 import styles from "./Inputs.module.css";
 
 const Inputs = (props) => {
-  const questions = useSelector((state) => state.business.details.questions);
+  const questions = useSelector((state) => state.business.subField.questions);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();

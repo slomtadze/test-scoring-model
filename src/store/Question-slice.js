@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const businessSlice = createSlice({
   name: "business",
   initialState: {
-    field: "dargi",
-    subField: "qvedargi",
-    details: {
+    sector: "dargi",
+    field: "qvedargi",
+    subField: {
       minProfit: "",
       maxProfit: "",
       exp: "",
@@ -19,25 +19,26 @@ const businessSlice = createSlice({
     },
   },
   reducers: {
-    addSubField(state, action) {
-      state.subField = action.payload;
+    addSector(state, action) {
+      state.sector = action.payload;
     },
     addField(state, action) {
       state.field = action.payload;
     },
-    addDetails(state, action) {
-      state.details = action.payload;
+
+    addSubField(state, action) {
+      state.subField = action.payload;
     },
     getQuestionValues(state, action) {
-      const index = state.details.questions.findIndex(
+      const index = state.subField.questions.findIndex(
         (question) => question.id === action.payload.id
       );
-      state.details.questions[index].value = action.payload.value;
+      state.subField.questions[index].value = action.payload.value;
     },
   },
 });
 
-export const { addSubField, addDetails, addField, getQuestionValues } =
+export const { addSector, addField, addSubField, getQuestionValues } =
   businessSlice.actions;
 
 export default businessSlice.reducer;

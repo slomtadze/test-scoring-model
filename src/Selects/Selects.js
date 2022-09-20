@@ -1,33 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addDetails, addField, addSubField } from "../store/Question-slice";
+import { addField, addSector, addSubField } from "../store/Question-slice";
 import Select from "./Select";
 
 import styles from "./Selects.module.css";
 import { fieldArray, sectorArray, subFieldArray } from "./SelectsSrc";
 
 const Selects = (props) => {
-  const [subFieldOptions, setSubFieldOptions] = useState([]);
-  const [sectorOptions, setSectorOptions] = useState([]);
+  const [fieldOptions, setfieldOptions] = useState([]);
+  const [subFieldOptions, setsubFieldOptions] = useState([]);
 
   const dispatch = useDispatch();
 
-  const selectedSubField = useSelector((state) => state.business.subField);
+  const selectedField = useSelector((state) => state.business.field);
+
+  const sectorChangeHandler = (value) => {
+    setfieldOptions(fieldArray[value]);
+    dispatch(addSector(value));
+  };
 
   const fieldChangeHandler = (value) => {
-    setSubFieldOptions(subFieldArray[value]);
+    setsubFieldOptions(subFieldArray[value].map((subField) => subField.name));
     dispatch(addField(value));
   };
 
   const subFieldChangeHandler = (value) => {
-    setSectorOptions(sectorArray[value].map((sector) => sector.name));
-    dispatch(addSubField(value));
-  };
-
-  const sectorChangeHandler = (value) => {
     dispatch(
-      addDetails(
-        sectorArray[selectedSubField].find((item) => item.name === value)
+      addSubField(
+        subFieldArray[selectedField].find((item) => item.name === value)
       )
     );
   };
@@ -37,20 +37,20 @@ const Selects = (props) => {
       <Select
         label="სექტორი"
         header="--აირჩიეთ სექტორი--"
-        options={fieldArray}
-        onChange={fieldChangeHandler}
+        options={sectorArray}
+        onChange={sectorChangeHandler}
       />
       <Select
         label="დარგი"
         header="--აირჩიეთ დარგი--"
-        options={subFieldOptions}
-        onChange={subFieldChangeHandler}
+        options={fieldOptions}
+        onChange={fieldChangeHandler}
       />
       <Select
         label="ქვედარგი"
         header="--აირჩიეთ ქვედარგი--"
-        options={sectorOptions}
-        onChange={sectorChangeHandler}
+        options={subFieldOptions}
+        onChange={subFieldChangeHandler}
       />
     </div>
   );

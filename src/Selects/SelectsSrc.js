@@ -1,4 +1,4 @@
-export const fieldArray = [
+export const sectorArray = [
   "სოფლის მეურნეობა",
   "ვაჭრობა",
   "მომსახურება",
@@ -6,7 +6,7 @@ export const fieldArray = [
   "არასამეწარმეო შემოსავალი",
 ];
 
-export const subFieldArray = {
+export const fieldArray = {
   "სოფლის მეურნეობა": [
     "ერთწლოვანი კულტურების მოყვანა",
     "მრავალწლოვანი კულტურების მოყვანა",
@@ -34,7 +34,7 @@ export const subFieldArray = {
   ],
 };
 
-export const sectorArray = {
+export const subFieldArray = {
   "ერთწლოვანი კულტურების მოყვანა": [
     {
       name: "ნესვი",
