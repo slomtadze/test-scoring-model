@@ -40,8 +40,8 @@ export const subFieldArray = {
   "ერთწლოვანი კულტურების მოყვანა": [
     {
       name: "ნესვი",
-      minProfit: 5400,
-      maxProfit: 6600,
+      minProfit: 450,
+      maxProfit: 550,
       exp: 48,
       questions: [
         { q: "რამდენ ჰექტარზე მოჰყავს კლიენტს მოსავალი", value: "", id: 1 },
@@ -51,14 +51,13 @@ export const subFieldArray = {
     },
     {
       name: "ხორბალი",
-      minProfit: 150,
-      maxProfit: 250,
-      exp: 20,
+      minProfit: 45,
+      maxProfit: 55,
+      exp: 67,
       questions: [
-        { q: "ჰექტარი", value: "" },
-        { q: "მოსავლიანობა", value: "" },
-        { q: "ფასი", value: "" },
-        { q: "სხვა ხორბალი", value: "" },
+        { q: "რამდენ ჰექტარზე მოჰყავს კლიენტს მოსავალი", value: "", id: 1 },
+        { q: "რამდენი ტონა მოსავალი მოჰყავს 1 ჰა-ზე", value: "", id: 2 },
+        { q: "1 ტონა პროდუქტის ფასი", value: "", id: 3 },
       ],
     },
     {
@@ -132,7 +131,6 @@ export const subFieldArray = {
       ],
     },
   ],
-
   "ენერგომატარებლები ": [
     {
       name: "ბენზინით, დიზელითა და ნავთით ვაჭრობა",
