@@ -12,6 +12,11 @@ export const calculate = (
   val4,
   val5
 ) => {
+  console.log(sector, field, subField, min, max, exp);
+  console.log(
+    field === "ენერგომატარებლები " &&
+      subField !== "შეშით, ბრიკეტით, ქვანახშირითა და კოქსით ვაჭრობა"
+  );
   const minProfit = min * val1;
   const maxProfit = max * val1;
   const checkRes = (res) => {
@@ -37,15 +42,17 @@ export const calculate = (
         12;
       checkRes(result);
       break;
-    case "ვაჭრობა":
+    case "ვაჭრობა ":
       if (
         field === "ენერგომატარებლები " &&
         subField !== "შეშით, ბრიკეტით, ქვანახშირითა და კოქსით ვაჭრობა"
       ) {
+        console.log(typeof +val1);
         result =
           (val1 * val2 * val4 - (val1 * val2 * val4 * 100) / (100 + val3)) *
           ((100 - exp) / 100);
       } else {
+        console.log(typeof val1);
         result =
           val1 * val2 -
           ((val1 * val2 * 100) / (100 + val3)) * ((100 - exp) / 100);

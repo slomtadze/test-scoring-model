@@ -7,7 +7,9 @@ import styles from "./Input.module.css";
 const Input = (props) => {
   const dispatch = useDispatch();
   const inputChangeHandler = (e) => {
-    dispatch(getQuestionValues({ id: props.id, value: e.target.value }));
+    dispatch(
+      getQuestionValues({ id: props.id, value: parseInt(e.target.value) })
+    );
   };
   return (
     <div className={styles["sub-box"]}>
