@@ -25,11 +25,15 @@ const Selects = (props) => {
   };
 
   const subFieldChangeHandler = (value) => {
-    dispatch(
-      addSubField(
-        subFieldArray[selectedField].find((item) => item.name === value)
-      )
-    );
+    if (!value) {
+      return;
+    } else {
+      dispatch(
+        addSubField(
+          subFieldArray[selectedField].find((item) => item.name === value)
+        )
+      );
+    }
   };
 
   return (

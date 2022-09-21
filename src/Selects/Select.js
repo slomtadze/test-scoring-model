@@ -14,7 +14,7 @@ const Select = (props) => {
     <div className={styles["sub-box"]}>
       <label htmlFor={props.id}>{props.label}</label>
       <select id={props.id} onChange={onChangeHanler}>
-        <option value={props.header}>{props.header}</option>
+        <option value="">{props.header}</option>
         {options}
       </select>
     </div>

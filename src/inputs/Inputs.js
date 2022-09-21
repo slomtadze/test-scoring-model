@@ -45,6 +45,7 @@ const Inputs = (props) => {
                 );
               }
             })}
+            {!subField.questions}
         </div>
         {subField.questions && <button className={styles.btn}>გამოთვლა</button>}
       </form>
