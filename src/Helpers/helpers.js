@@ -17,9 +17,7 @@ export const calculate = (
     field === "ენერგომატარებლები " &&
       subField !== "შეშით, ბრიკეტით, ქვანახშირითა და კოქსით ვაჭრობა"
   );
-  const minProfit = min * val1;
-  const maxProfit = max * val1;
-  const checkRes = (res) => {
+  const checkRes = (res, minProfit, maxProfit) => {
     console.log(minProfit, res, maxProfit);
     if (minProfit <= res && res <= maxProfit) {
       setNetProfit(res.toFixed(0));
@@ -30,6 +28,8 @@ export const calculate = (
   let result = null;
   switch (sector) {
     case "სოფლის მეურნეობა":
+      const minProfit = min * val1;
+      const maxProfit = max * val1;
       const value4 = val4 ? val4 : 1;
       const value5 = val5 ? +val5 : 1;
       result =
@@ -40,7 +40,7 @@ export const calculate = (
           value5 *
           ((100 - exp) / 100)) /
         12;
-      checkRes(result);
+      checkRes(result, minProfit, maxProfit);
       break;
     case "ვაჭრობა ":
       if (
