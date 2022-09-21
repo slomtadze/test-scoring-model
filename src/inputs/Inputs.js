@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { calculate } from "../Helpers/helpers";
-import useCalculate from "../Hooks/Use-Calculate";
 import Input from "./Input";
 
 import styles from "./Inputs.module.css";
@@ -49,7 +48,14 @@ const Inputs = (props) => {
         </div>
         {subField.questions && <button className={styles.btn}>გამოთვლა</button>}
       </form>
-      <p>{netProfit}</p>
+      {netProfit.length < 10 ? (
+        <p className={styles["paragraph-valid"]}>
+          <span>ყოველთვიური მოგება:</span>
+          {` ${netProfit} ლარი`}
+        </p>
+      ) : (
+        <p className={styles["paragraph-invalid"]}>{netProfit}</p>
+      )}
     </Fragment>
   );
 };
