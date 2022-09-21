@@ -24,3 +24,17 @@
 .btn:active {
   background-color: rgb(99, 26, 26);
 }
+
+.paragraph-invalid {
+  margin-top: 25px;
+  color: red;
+  letter-spacing: 0.5px;
+  font-weight: bolder;
+}
+
+.paragraph-valid {
+  margin-top: 25px;
+  color: green;
+  letter-spacing: 0.5px;
+  font-weight: bolder;
+}
