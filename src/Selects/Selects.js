@@ -20,8 +20,14 @@ const Selects = (props) => {
   };
 
   const fieldChangeHandler = (value) => {
-    setsubFieldOptions(subFieldArray[value].map((subField) => subField.name));
-    dispatch(addField(value));
+    if (!value) {
+      return;
+    } else if (!subFieldArray[value]) {
+      setsubFieldOptions([]);
+    } else {
+      setsubFieldOptions(subFieldArray[value].map((subField) => subField.name));
+      dispatch(addField(value));
+    }
   };
 
   const subFieldChangeHandler = (value) => {
