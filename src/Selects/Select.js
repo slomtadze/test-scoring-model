@@ -4,7 +4,7 @@ import styles from "./Select.module.css";
 
 const Select = (props) => {
   const options = props.options
-    ? props.options.map((field) => <option value={field}>{field}</option>)
+    ? props.options.map((field) => <option value={`${field}`}>{field}</option>)
     : [];
 
   const onChangeHanler = (e) => {
