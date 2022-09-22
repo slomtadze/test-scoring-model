@@ -57,7 +57,16 @@ export const calculate = (
           val1 * val2 -
           ((val1 * val2 * 100) / (100 + val3)) * ((100 - exp) / 100);
       }
-      checkRes(result);
+      checkRes(result, min, max);
+      break;
+    case "მომსახურება ":
+      if (subField === "ტაქსით მომსახურება") {
+        result = val1 * val2 * val3 * 0.6 * ((100 - exp) / 100);
+      } else if (subField === "უძრავი ქონების ყიდვა-გაყიდვის სააგენტო") {
+        result = val1 * val2 * (val3 / 100) * ((100 - exp) / 100);
+      }
+      checkRes(result, min, max);
+      break;
     default:
   }
 };
