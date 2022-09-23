@@ -94,7 +94,31 @@ export const calculate = (
       } else {
         checkRes(result, min, max);
       }
-
+      break;
+    case "წარმოება ":
+      if (
+        subField ===
+        "სხვა სამშენებლო-სარემონტო მასალებისა და იარაღების წარმოება"
+      ) {
+        result =
+          (value1 * value2 - (value1 * value2 * 100) / (100 + value3)) *
+          ((100 - exp) / 100);
+      } else if (
+        field === "კვების პროდუქტების წარმოება" &&
+        subField !== "ფქვილისა და ქატოს წარმოება"
+      ) {
+        result =
+          (value1 * value2 * value3 -
+            (value1 * value2 * value3 * 100) / (100 + value4)) *
+          ((100 - exp) / 100);
+      } else {
+        result =
+          ((value1 * value2 * value3 -
+            (value1 * value2 * value3 * 100) / (100 + value4)) /
+            12) *
+          ((100 - exp) / 100);
+      }
+      checkRes(result, min, max);
       break;
     default:
   }
