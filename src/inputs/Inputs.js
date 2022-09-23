@@ -7,7 +7,9 @@ import styles from "./Inputs.module.css";
 
 const Inputs = (props) => {
   const [netProfit, setNetProfit] = useState("");
-  const { sector, field, subField } = useSelector((state) => state.business);
+  const { sector, field, subField, inputsAreShown } = useSelector(
+    (state) => state.business
+  );
   const question4 = subField.questions[3] ? subField.questions[3].value : null;
   const question5 = subField.questions[4] ? subField.questions[4].value : null;
 
@@ -27,13 +29,15 @@ const Inputs = (props) => {
       question4,
       question5
     );
+    console.log(netProfit, subField.min, subField.max);
   };
 
   return (
     <Fragment>
+      {inputsAreShown && <h1>კითხვები</h1>}
       <form onSubmit={formSubmitHandler}>
         <div className={styles.box}>
-          {subField.questions &&
+          {inputsAreShown &&
             subField.questions.map((question) => {
               if (question.q) {
                 return (
@@ -45,11 +49,11 @@ const Inputs = (props) => {
                 );
               }
             })}
-            {!subField.questions}
+          {!subField.questions}
         </div>
-        {subField.questions && <button className={styles.btn}>გამოთვლა</button>}
+        {inputsAreShown && <button className={styles.btn}>გამოთვლა</button>}
       </form>
-      {netProfit.length < 10 ? (
+      {inputsAreShown && netProfit.trim() > 0 && netProfit.length < 10 ? (
         <p className={styles["paragraph-valid"]}>
           <span>ყოველთვიური მოგება:</span>
           {` ${netProfit} ლარი`}

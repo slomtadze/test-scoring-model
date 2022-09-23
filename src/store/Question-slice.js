@@ -5,6 +5,7 @@ const businessSlice = createSlice({
   initialState: {
     sector: "dargi",
     field: "qvedargi",
+    inputsAreShown: false,
     subField: {
       minProfit: "",
       maxProfit: "",
@@ -35,10 +36,18 @@ const businessSlice = createSlice({
       );
       state.subField.questions[index].value = action.payload.value;
     },
+    manageInputsAreShown(state, action) {
+      state.inputsAreShown = action.payload;
+    },
   },
 });
 
-export const { addSector, addField, addSubField, getQuestionValues } =
-  businessSlice.actions;
+export const {
+  addSector,
+  addField,
+  addSubField,
+  getQuestionValues,
+  manageInputsAreShown,
+} = businessSlice.actions;
 
 export default businessSlice.reducer;
