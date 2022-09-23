@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addField, addSector, addSubField } from "../store/Question-slice";
+import {
+  addField,
+  addSector,
+  addSubField,
+  manageInputsAreShown,
+} from "../store/Question-slice";
 import Select from "./Select";
 
 import styles from "./Selects.module.css";
@@ -32,8 +37,10 @@ const Selects = (props) => {
 
   const subFieldChangeHandler = (value) => {
     if (!value) {
+      dispatch(manageInputsAreShown(false));
       return;
     } else {
+      dispatch(manageInputsAreShown(true));
       dispatch(
         addSubField(
           subFieldArray[selectedField].find((item) => item.name === value)

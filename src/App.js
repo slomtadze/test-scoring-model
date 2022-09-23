@@ -8,7 +8,6 @@ function App() {
       <div className={styles.wrapper}>
         <h1>სქორინგი</h1>
         <Selects />
-        <h1>კითხვები</h1>
         <Inputs />
       </div>
     </div>
