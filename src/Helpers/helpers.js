@@ -84,7 +84,17 @@ export const calculate = (
         result =
           value1 * value2 * value3 * value4 * value5 * ((100 - exp) / 100);
       }
-      checkRes(result, min, max);
+      if (
+        subField === "საცხოვრებელი ფართის გაქირავება არატურისტებზე" ||
+        subField === "კომერციული  ფართის გაქირავება "
+      ) {
+        const minProfit = min * val1;
+        const maxProfit = max * val1;
+        checkRes(result, minProfit, maxProfit);
+      } else {
+        checkRes(result, min, max);
+      }
+
       break;
     default:
   }
