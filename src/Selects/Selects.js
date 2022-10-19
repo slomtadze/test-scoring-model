@@ -9,43 +9,48 @@ import {
 import Select from "./Select";
 
 import styles from "./Selects.module.css";
-import { fieldArray, sectorArray, subFieldArray } from "./SelectsSrc";
+//import { fieldArray, sectorArray, subFieldArray } from "./SelectsSrc";
+import { srcArray } from "../Helpers/src";
 
 const Selects = (props) => {
+  const [selectedSector, setSelectedSector] = useState({});
+  const [selectedField, setSelectedField] = useState({});
   const [fieldOptions, setfieldOptions] = useState([]);
   const [subFieldOptions, setsubFieldOptions] = useState([]);
-
   const dispatch = useDispatch();
 
-  const selectedField = useSelector((state) => state.business.field);
+  const sectorArray = srcArray.map((item) => item.sector);
 
   const sectorChangeHandler = (value) => {
-    setfieldOptions(fieldArray[value]);
+    const sector = srcArray.find((sector) => sector.sector === value);
+    const fields = sector.field.map((field) => field.title);
+    setSelectedSector(sector);
+    setfieldOptions(fields);
     dispatch(addSector(value));
   };
 
   const fieldChangeHandler = (value) => {
+    const field = selectedSector.field.find((field) => field.title === value);
+    const subFieldArray = field.value.map((subField) => subField.name);
     if (!value) {
       return;
-    } else if (!subFieldArray[value]) {
-      setsubFieldOptions([]);
     } else {
-      setsubFieldOptions(subFieldArray[value].map((subField) => subField.name));
+      setSelectedField(field);
+      setsubFieldOptions(subFieldArray);
       dispatch(addField(value));
     }
   };
 
   const subFieldChangeHandler = (value) => {
+    const subField = selectedField.value.find(
+      (subField) => subField.name === value
+    );
     if (!value) {
       dispatch(manageInputsAreShown(false));
       return;
     } else {
       dispatch(manageInputsAreShown(true));
-      dispatch(
-        addSubField(
-          subFieldArray[selectedField].find((item) => item.name === value)
-        )
-      );
+      dispatch(addSubField(subField));
     }
   };
 
