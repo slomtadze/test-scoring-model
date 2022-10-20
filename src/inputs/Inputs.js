@@ -15,7 +15,7 @@ const Inputs = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    calculate(
+    const result = calculate(
       setNetProfit,
       sector,
       field,
@@ -29,7 +29,6 @@ const Inputs = (props) => {
       question4,
       question5
     );
-    console.log(netProfit, subField.min, subField.max);
   };
 
   return (
