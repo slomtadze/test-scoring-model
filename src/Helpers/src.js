@@ -1,6 +1,6 @@
 export const srcArray = [
   {
-    sector: "აგრო მეურნეობა",
+    sector: "სოფლის მეურნეობა",
     field: [
       {
         title: "ერთწლოვანი კულტურების მოყვანა",
