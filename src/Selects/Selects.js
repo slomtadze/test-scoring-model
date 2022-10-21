@@ -26,6 +26,7 @@ const Selects = (props) => {
     const fields = sector.field.map((field) => field.title);
     setSelectedSector(sector);
     setfieldOptions(fields);
+    setsubFieldOptions([]);
     dispatch(addSector(value));
   };
 
