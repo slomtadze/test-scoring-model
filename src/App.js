@@ -1,18 +1,15 @@
 import Inputs from "./inputs/Inputs";
 import Selects from "./Selects/Selects";
 import HomePage from "./pages/HomePage";
+import AdminPage from "./pages/AdminPage";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className="h-screen w-screen bg-herro-img bg-center bg-cover flex justify-center items-center">
-      {/* <div className="w-3/4 h-3/4 bg-white/90 text-center ">
-        <h1>სქორინგი</h1>
-        <Selects />
-        <Inputs />
-      </div> */}
-
-      <HomePage />
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/admin" element={<AdminPage />} />
+    </Routes>
   );
 }
 
