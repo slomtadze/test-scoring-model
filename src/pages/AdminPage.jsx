@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
+import AdminPageList from "../components/AdminPageList";
 import Import from "./Import";
 
 const AdminPage = () => {
@@ -19,20 +20,7 @@ const AdminPage = () => {
             status: <span className="italic">admin</span>
           </h1>
         </div>
-        <div className="mb-4">
-          <div className="bg-slate-200 px-2 py-[1px] my-[2px]">
-            Some Sectors Here
-          </div>
-          <div className="bg-slate-200 px-2 py-[1px] my-[2px]">
-            Some Sectors Here
-          </div>
-          <div className="bg-slate-200 px-2 py-[1px] my-[2px]">
-            Some Sectors Here
-          </div>
-          <div className="bg-slate-200 px-2 py-[1px] my-[2px]">
-            Some Sectors Here
-          </div>
-        </div>
+        <AdminPageList />
         <button
           className="bg-orange-300 w-full py-[2px] font-white hover:bg-orange-500 duration-150"
           type="button"
