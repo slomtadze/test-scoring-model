@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
+import Import from "./Import";
 
 const AdminPage = () => {
   const { logout } = useContext(AuthContext);
@@ -40,7 +41,9 @@ const AdminPage = () => {
           Log out
         </button>
       </div>
-      <div className="h-full w-full bg-slate-600"></div>
+      <div className="h-full w-full bg-slate-600">
+        <Import />
+      </div>
     </div>
   );
 };
