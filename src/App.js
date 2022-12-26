@@ -1,16 +1,23 @@
-import styles from "./App.module.css";
 import Inputs from "./inputs/Inputs";
 import Selects from "./Selects/Selects";
+import HomePage from "./pages/HomePage";
+import AdminPage from "./pages/AdminPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div className={styles.app}>
-      <div className={styles.wrapper}>
-        <h1>სქორინგი</h1>
-        <Selects />
-        <Inputs />
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminPage />
+          </ProtectedRoute>
+        }
+      />
+    </Routes>
   );
 }
 
