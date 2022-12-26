@@ -11,7 +11,7 @@ const AdminPage = () => {
   };
   return (
     <div className="h-screen w-screen bg-slate-50 flex">
-      <div className="h-full w-1/4 min-w-fit bg-slate-300 pt-2 px-2">
+      <div className="h-full w-[30%] min-w-min bg-slate-300 pt-2 px-2">
         <div className="mb-4">
           <h1 className="font-semibold">
             user: <span className="italic">saba@test.com</span>
