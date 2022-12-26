@@ -1,5 +1,3 @@
-import Inputs from "./inputs/Inputs";
-import Selects from "./Selects/Selects";
 import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
 import ProtectedRoute from "./components/ProtectedRoute";
