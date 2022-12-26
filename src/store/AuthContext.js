@@ -19,8 +19,11 @@ export const AuthContextProvider = (props) => {
   const loginHandler = async (email, password, navigate, setError) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
-        console.log("success");
-        navigate("../admin");
+        if (email === "admin@test.com") {
+          navigate("../admin");
+        } else {
+          navigate("../user");
+        }
       })
       .catch((error) => {
         console.log(error.code);
