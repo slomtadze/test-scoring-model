@@ -18,10 +18,8 @@ const HomePage = () => {
   const [error, setError] = useState("");
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  console.log(initialValues);
 
   const userLoginHandler = (values) => {
-    console.log(values.email, values.password);
     login(values.email, values.password, navigate, setError);
   };
 
