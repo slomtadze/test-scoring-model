@@ -3,6 +3,7 @@ import * as XLSX from "xlsx/xlsx.mjs";
 import { doc, setDoc } from "firebase/firestore";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
+import { array } from "yup";
 
 function Reader() {
   const [setor, setSector] = useState([]);
@@ -29,9 +30,30 @@ function Reader() {
       return array.filter(
         (obj) => obj.sector === sector && typeof obj.field == "string"
       );
+    };
+
+    function removeDuplicateObjects(array) {
+      const uniqueArray = array.filter((obj, index, self) => {
+        return self.map((obj) => obj.sector).indexOf(obj.sector) === index;
+      });
+      return uniqueArray;
     }
 
-    try {
+    // Add a new document in collection "cities"
+    await setDoc(doc(db, "სექტორი", "სოფლის მეურნეობა"), {
+      fields: getSector(data, "სოფლის მეურნეობა"),
+    });
+    await setDoc(doc(db, "სექტორი", "ვაჭრობა"), {
+      fields: getSector(data, "ვაჭრობა"),
+    });
+    await setDoc(doc(db, "სექტორი", "წარმოება"), {
+      fields: getSector(data, "წარმოება"),
+    });
+    await setDoc(doc(db, "სექტორი", "მომსახურება"), {
+      fields: getSector(data, "მომსახურება"),
+    });
+
+    /* try {
       const docRef = await addDoc(collection(db, "data"), {
         agroCulture: getSector(data, "სოფლის მეურნეობა"),
         trading: getSector(data, "ვაჭრობა"),
@@ -41,7 +63,7 @@ function Reader() {
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
-    }
+    } */
   };
   /*     function combineFieldProperties(array) {
   const combinedArray = array.reduce((acc, obj) => {
