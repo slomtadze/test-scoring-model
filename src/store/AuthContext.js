@@ -26,7 +26,6 @@ export const AuthContextProvider = (props) => {
         }
       })
       .catch((error) => {
-        console.log(error.code);
         setError(error.code);
       });
   };
