@@ -22,7 +22,7 @@ const AdminPageListItem = () => {
           <h1>Some Sectors Here 2</h1>
           <div className="h-[18px] w-[18px] rotate-45 absolute z-10 bg-slate-200 top-[4px] right-0 transform translate-x-1/2"></div>
         </div>
-        {fieldIsShown && (
+        {/* {fieldIsShown && (
           <ul
             className="absolute top-0 right-0 z-20 translate-x-[40%] bg-transparent"
             onMouseEnter={showFieldHandler}
@@ -57,7 +57,7 @@ const AdminPageListItem = () => {
               </div>
             </li>
           </ul>
-        )}
+        )} */}
       </li>
     </Fragment>
   );

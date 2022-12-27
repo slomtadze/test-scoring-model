@@ -18,11 +18,11 @@ const AdminPageListHeader = () => {
         </h1>
       </div>
       <button
-        className="bg-orange-300 px-2 font-white hover:bg-orange-500 duration-150 rounded-lg"
+        className="bg-orange-300 px-4 py-[2px] h-1/2 font-white hover:bg-orange-500 duration-150 rounded-lg"
         type="button"
         onClick={logOutHandler}
       >
-        Log out
+        გასვლა
       </button>
     </div>
   );
