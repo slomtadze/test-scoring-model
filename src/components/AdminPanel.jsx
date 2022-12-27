@@ -19,7 +19,7 @@ const AdminPanel = ({ setSubFields }) => {
     const uniqueArray = array.filter((obj, index, self) => {
       return self.map((obj) => obj.field).indexOf(obj.field) === index;
     });
-    return uniqueArray;
+    return uniqueArray.map((obj) => obj.field);
   }
 
   const getData = async (ref, setData) => {
@@ -27,10 +27,8 @@ const AdminPanel = ({ setSubFields }) => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      const data = removeDuplicateObjects(docSnap.data().fields);
-      setData(data);
+      setData(docSnap.data().fields);
     } else {
-      // doc.data() will be undefined in this case
       console.log("No such document!");
     }
   };
@@ -40,7 +38,9 @@ const AdminPanel = ({ setSubFields }) => {
   };
 
   const onFieldClick = (string) => {
-    
+    const temp = fields.filter((fieldObj) => fieldObj.field === string);
+    console.log(fields, string, temp);
+    setSubFields(fields.filter((fieldObj) => fieldObj.field === string));
   };
 
   return (
@@ -53,7 +53,7 @@ const AdminPanel = ({ setSubFields }) => {
       />
       <AdminPageList
         title="დარგი"
-        data={fields.map((field) => field.field)}
+        data={removeDuplicateObjects(fields)}
         onClickHandler={onFieldClick}
       />
       <Import />
