@@ -39,7 +39,9 @@ const AdminPanel = ({ setSubFields }) => {
     getData(string, setFields);
   };
 
-  const onFieldClick = (string) => {};
+  const onFieldClick = (string) => {
+    
+  };
 
   return (
     <Fragment>
@@ -51,7 +53,7 @@ const AdminPanel = ({ setSubFields }) => {
       />
       <AdminPageList
         title="დარგი"
-        data={fields}
+        data={fields.map((field) => field.field)}
         onClickHandler={onFieldClick}
       />
       <Import />
