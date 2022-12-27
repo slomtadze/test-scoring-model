@@ -6,7 +6,7 @@ import Import from "../pages/Import";
 import GetData from "../Helpers/Hooks/GetData";
 const { Fragment, useState } = require("react");
 
-const AdminPanel = () => {
+const AdminPanel = ({ setSubFields }) => {
   const [sectors, setSectors] = useState([
     "სოფლის მეურნეობა",
     "ვაჭრობა",
@@ -15,12 +15,20 @@ const AdminPanel = () => {
   ]);
   const [fields, setFields] = useState([]);
 
+  function removeDuplicateObjects(array) {
+    const uniqueArray = array.filter((obj, index, self) => {
+      return self.map((obj) => obj.field).indexOf(obj.field) === index;
+    });
+    return uniqueArray;
+  }
+
   const getData = async (ref, setData) => {
-    const docRef = doc(db, "სექტორები", ref);
+    const docRef = doc(db, "სექტორი", ref);
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
+      const data = removeDuplicateObjects(docSnap.data().fields);
+      setData(data);
     } else {
       // doc.data() will be undefined in this case
       console.log("No such document!");
@@ -28,9 +36,10 @@ const AdminPanel = () => {
   };
 
   const onSectorClick = (string) => {
-    console.log(string);
     getData(string, setFields);
   };
+
+  const onFieldClick = (string) => {};
 
   return (
     <Fragment>
@@ -40,7 +49,11 @@ const AdminPanel = () => {
         data={sectors}
         onClickHandler={onSectorClick}
       />
-      <AdminPageList title="დარგი" data={fields} />
+      <AdminPageList
+        title="დარგი"
+        data={fields}
+        onClickHandler={onFieldClick}
+      />
       <Import />
     </Fragment>
   );
