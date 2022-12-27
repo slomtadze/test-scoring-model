@@ -29,12 +29,7 @@ function Reader() {
       return array.filter(
         (obj) => obj.sector === sector && typeof obj.field == "string"
       );
-    };
-
-    const agroCulture = getSector(data, "სოფლის მეურნეობა");
-    const trading = getSector(data, "ვაჭრობა");
-    const servise = getSector(data, "მომსახურება");
-    const production = getSector(data, "წარმოება");
+    }
 
     try {
       const docRef = await addDoc(collection(db, "data"), {
