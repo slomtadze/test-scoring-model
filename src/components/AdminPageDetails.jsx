@@ -1,11 +1,12 @@
 import React from "react";
 
 const AdminPageDetails = ({ subFieldObj }) => {
-  console.log(subFieldObj);
   return (
-    <div className="flex flex-col items-center px-12 bg-white h-fit">
-      <h1>{subFieldObj.subField ? subFieldObj.subField : "ar moidzebna"}</h1>
-      <div className="grid grid-cols-3">
+    <div className="flex flex-col items-center px-12 py-8">
+      <h1 className="text-2xl font-medium text-amber-900 ">
+        {subFieldObj.subField}
+      </h1>
+      <div className="grid grid-cols-3 gap-4 py-4 w-full">
         <div className="col-span-1 h-full ">
           <h1>
             რეგიონი: <span>{subFieldObj.sector}</span>

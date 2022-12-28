@@ -38,8 +38,6 @@ const AdminPanel = ({ setSubFields }) => {
   };
 
   const onFieldClick = (string) => {
-    const temp = fields.filter((fieldObj) => fieldObj.field === string);
-    console.log(fields, string, temp);
     setSubFields(fields.filter((fieldObj) => fieldObj.field === string));
   };
 
