@@ -1,6 +1,13 @@
 import { useEffect, useRef } from "react";
+import { Field } from "formik";
 
-const AdminPageDetailsItem = ({ label, type, name, placeholder }) => {
+const AdminPageDetailsItem = ({
+  label,
+  type,
+  name,
+  placeholder,
+  editModeIsActive,
+}) => {
   const inputRef = useRef();
 
   useEffect(() => {
@@ -19,15 +26,17 @@ const AdminPageDetailsItem = ({ label, type, name, placeholder }) => {
         >
           {label}
         </label>
-        <h1 className="text-sm text-gray-500">{placeholder}</h1>
-        {/* <input
-          className="bg-transparent px-2 placeholder-gray-500"
-          ref={inputRef}
-          type={type}
-          name={name}
-          placeholder={`${placeholder}`}
-          disabled
-        /> */}
+        {editModeIsActive ? (
+          <Field
+            className="bg-transparent px-2 placeholder-gray-500"
+            ref={inputRef}
+            type={type}
+            name={name}
+            placeholder={`${placeholder}`}
+          />
+        ) : (
+          <h1 className="text-sm text-gray-500">{placeholder}</h1>
+        )}
       </div>
     </div>
   );

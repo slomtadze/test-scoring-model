@@ -1,8 +1,25 @@
 import React, { useState } from "react";
 import AdminPageDetailsItem from "./AdminPageDetailsItem";
+import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
 
+const initialValues = {
+  region: "",
+  sector: "",
+  field: "",
+  subField: "",
+  minProfit: "",
+  maxProfit: "",
+  exp: "",
+  question_1: "",
+  question_2: "",
+  question_3: "",
+  question_4: "",
+  question_5: "",
+};
+
 const AdminPageDetails = ({ subFieldObj }) => {
+  /* შესაცვლელია ინიშიალვალუები, საწყისი მნიშნვნელობები უნდა წამოიღოს არსებული ობჯექტიდან, დამჭირდება იუზეფექტი სავარაუდოდ */
   const [editIsActive, setEditIsActive] = useState(false);
 
   const setEditMode = () => {
@@ -12,126 +29,125 @@ const AdminPageDetails = ({ subFieldObj }) => {
     setEditIsActive(false);
   };
 
+  const onFormSubmitHandler = (values) => {
+    console.log(values);
+    setEditIsActive(false);
+  };
+
   return (
     <div className="flex flex-col items-center px-12 py-8 relative">
-      {editIsActive ? (
-        <div className="flex absolute bottom-8 left-16">
-          <button
-            className="bg-orange-300 px-4 py-[2px] rounded-lg mr-2"
-            onClick={setEditMode}
-          >
-            დადასტურება
-          </button>
-          <button
-            className="bg-orange-300 px-4 py-[2px] rounded-lg"
-            onClick={exitEditMode}
-          >
-            გაუქმება
-          </button>
-        </div>
-      ) : (
-        <button
-          className="absolute bottom-8 left-16 bg-orange-300 px-4 py-[2px] rounded-lg"
-          onClick={setEditMode}
-        >
-          შეცვლა
-        </button>
-      )}
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
-      <Formik>
+      <Formik initialValues={initialValues} onSubmit={onFormSubmitHandler}>
         <Form className="grid grid-rows-2 gap-4 py-4 w-full">
+          <AdminPageDetailsButtons
+            editIsActive={editIsActive}
+            exitEditMode={exitEditMode}
+            setEditMode={setEditMode}
+          />
           <div className="flex flex-wrap">
             <AdminPageDetailsItem
-              id="რეგიონი"
+              editModeIsActive={editIsActive}
+              id="region"
               label="რეგიონი"
               type="text"
-              name="რეგიონი"
+              name="region"
               placeholder={subFieldObj.region}
             />
             <AdminPageDetailsItem
-              id="სექტორი"
+              editModeIsActive={editIsActive}
+              id="sector"
               label="სექტორი"
               type="text"
-              name="სექტორი"
+              name="sector"
               placeholder={subFieldObj.sector}
             />
             <AdminPageDetailsItem
-              id="დარგი"
+              editModeIsActive={editIsActive}
+              id="field"
               label="დარგი"
               type="text"
-              name="დარგი"
+              name="field"
               placeholder={subFieldObj.field}
             />
             <AdminPageDetailsItem
-              id="ქვედარგი"
+              editModeIsActive={editIsActive}
+              id="subField"
               label="ქვედარგი"
               type="text"
-              name="ქვედარგი"
+              name="subField"
               placeholder={subFieldObj.subField}
             />
             <AdminPageDetailsItem
-              id="ხარჯები"
+              editModeIsActive={editIsActive}
+              id="exp"
               label="ხარჯები"
               type="number"
-              name="ხარჯები"
+              name="exp"
               placeholder={subFieldObj.exp || subFieldObj.opExp}
             />
             <AdminPageDetailsItem
-              id="მინ"
+              editModeIsActive={editIsActive}
+              id="minProfit"
               label="მინიმალური მოგება"
               type="number"
-              name="მინ"
+              name="minProfit"
               placeholder={subFieldObj.minProfit.toFixed()}
             />
             <AdminPageDetailsItem
-              id="მაქს"
+              editModeIsActive={editIsActive}
+              id="maxProfit"
               label="მაქსიმალური მოგება"
               type="number"
-              name="მაქს"
+              name="maxProfit"
               placeholder={subFieldObj.maxProfit.toFixed()}
             />
           </div>
           <div className="flex h-max">
             <AdminPageDetailsItem
-              id="1"
+              editModeIsActive={editIsActive}
+              id="question_1"
               label="კითხვა N1"
               type="text"
-              name="1"
+              name="question_1"
               placeholder={subFieldObj.question_1}
             />
             <AdminPageDetailsItem
-              id="2"
+              editModeIsActive={editIsActive}
+              id="question_2"
               label="კითხვა N2"
               type="text"
-              name="2"
+              name="question_2"
               placeholder={subFieldObj.question_2}
             />
             {subFieldObj.question_3 && (
               <AdminPageDetailsItem
-                id="3"
+                editModeIsActive={editIsActive}
+                id="question_3"
                 label="კითხვა N3"
                 type="text"
-                name="3"
+                name="question_3"
                 placeholder={subFieldObj.question_3}
               />
             )}
             {subFieldObj.question_4 && (
               <AdminPageDetailsItem
-                id="4"
+                editModeIsActive={editIsActive}
+                id="question_4"
                 label="კითხვა N4"
                 type="text"
-                name="4"
+                name="question_4"
                 placeholder={subFieldObj.question_4}
               />
             )}
             {subFieldObj.question_5 && (
               <AdminPageDetailsItem
-                id="5"
+                editModeIsActive={editIsActive}
+                id="question_5"
                 label="კითხვა N5"
                 type="text"
-                name="5"
+                name="question_5"
                 placeholder={subFieldObj.question_5}
               />
             )}
