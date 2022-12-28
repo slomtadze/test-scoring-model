@@ -1,114 +1,115 @@
 import React from "react";
+import AdminPageDetailsItem from "./AdminPageDetailsItem";
+import { Form, Formik } from "formik";
+
+const initialValues = {};
 
 const AdminPageDetails = ({ subFieldObj }) => {
+  console.log(subFieldObj);
+
   return (
     <div className="flex flex-col items-center px-12 py-8">
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
-      <div className="grid grid-rows-2 gap-4 py-4 w-full">
-        <div className="flex flex-wrap">
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
-              />
-            </div>
+      <Formik>
+        <Form className="grid grid-rows-2 gap-4 py-4 w-full">
+          <div className="flex flex-wrap">
+            <AdminPageDetailsItem
+              id="რეგიონი"
+              label="რეგიონი"
+              type="text"
+              name="რეგიონი"
+              placeholder={subFieldObj.region}
+            />
+            <AdminPageDetailsItem
+              id="სექტორი"
+              label="სექტორი"
+              type="text"
+              name="სექტორი"
+              placeholder={subFieldObj.sector}
+            />
+            <AdminPageDetailsItem
+              id="დარგი"
+              label="დარგი"
+              type="text"
+              name="დარგი"
+              placeholder={subFieldObj.field}
+            />
+            <AdminPageDetailsItem
+              id="ქვედარგი"
+              label="ქვედარგი"
+              type="text"
+              name="ქვედარგი"
+              placeholder={subFieldObj.subField}
+            />
+            <AdminPageDetailsItem
+              id="ხარჯები"
+              label="ხარჯები"
+              type="number"
+              name="ხარჯები"
+              placeholder={subFieldObj.exp || subFieldObj.opExp}
+            />
+            <AdminPageDetailsItem
+              id="მინ"
+              label="მინიმალური მოგება"
+              type="number"
+              name="მინ"
+              placeholder={subFieldObj.minProfit.toFixed()}
+            />
+            <AdminPageDetailsItem
+              id="მაქს"
+              label="მაქსიმალური მოგება"
+              type="number"
+              name="მაქს"
+              placeholder={subFieldObj.maxProfit.toFixed()}
+            />
           </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
+          <div className="flex">
+            <AdminPageDetailsItem
+              id="1"
+              label="კითხვა N1"
+              type="text"
+              name="1"
+              placeholder={subFieldObj.question_1}
+            />
+            <AdminPageDetailsItem
+              id="2"
+              label="კითხვა N2"
+              type="text"
+              name="2"
+              placeholder={subFieldObj.question_2}
+            />
+            {subFieldObj.question_3 && (
+              <AdminPageDetailsItem
+                id="3"
+                label="კითხვა N3"
+                type="text"
+                name="3"
+                placeholder={subFieldObj.question_3}
               />
-            </div>
-          </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
+            )}
+            {subFieldObj.question_4 && (
+              <AdminPageDetailsItem
+                id="4"
+                label="კითხვა N4"
+                type="text"
+                name="4"
+                placeholder={subFieldObj.question_4}
               />
-            </div>
-          </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
+            )}
+            {subFieldObj.question_5 && (
+              <AdminPageDetailsItem
+                id="5"
+                label="კითხვა N5"
+                type="text"
+                name="5"
+                placeholder={subFieldObj.question_5}
               />
-            </div>
+            )}
           </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
-              />
-            </div>
-          </div>
-          <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-            <div className="flex flex-col">
-              <label className="mb-2" htmlFor="minProfit">
-                მინიმალური მოგება
-              </label>
-              <input
-                className="bg-transparent"
-                type="number"
-                name="minProfit"
-                placeholder={`${subFieldObj.minProfit} ლარი`}
-                disabled
-              />
-            </div>
-          </div>
-        </div>
-        <div className=""></div>
-      </div>
+        </Form>
+      </Formik>
     </div>
   );
 };
