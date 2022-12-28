@@ -1,37 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
 
-const initialValues = {
-  region: "",
-  sector: "",
-  field: "",
-  subField: "",
-  minProfit: "",
-  maxProfit: "",
-  exp: "",
-  question_1: "",
-  question_2: "",
-  question_3: "",
-  question_4: "",
-  question_5: "",
-};
-
-const AdminPageDetails = ({ subFieldObj }) => {
-  /* შესაცვლელია ინიშიალვალუები, საწყისი მნიშნვნელობები უნდა წამოიღოს არსებული ობჯექტიდან, დამჭირდება იუზეფექტი სავარაუდოდ */
+const AdminPageDetails = ({ subFieldObj, uploadSubFieldHandler }) => {
   const [editIsActive, setEditIsActive] = useState(false);
 
   const setEditMode = () => {
+    console.log(subFieldObj.subField);
     setEditIsActive(true);
   };
   const exitEditMode = () => {
+    console.log(subFieldObj.subField);
     setEditIsActive(false);
   };
 
   const onFormSubmitHandler = (values) => {
-    console.log(values);
     setEditIsActive(false);
+    console.log(values);
+    uploadSubFieldHandler(values);
   };
 
   return (
@@ -41,10 +28,6 @@ const AdminPageDetails = ({ subFieldObj }) => {
       </h1>
       <Formik
         initialValues={{
-          region: subFieldObj.region,
-          sector: subFieldObj.sector,
-          field: subFieldObj.field,
-          subField: subFieldObj.subField,
           minProfit: subFieldObj.minProfit,
           maxProfit: subFieldObj.maxProfit,
           exp: subFieldObj.exp || subFieldObj.opExp,
@@ -64,7 +47,6 @@ const AdminPageDetails = ({ subFieldObj }) => {
           />
           <div className="flex flex-wrap">
             <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
               id="region"
               label="რეგიონი"
               type="text"
@@ -72,7 +54,6 @@ const AdminPageDetails = ({ subFieldObj }) => {
               placeholder={subFieldObj.region}
             />
             <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
               id="sector"
               label="სექტორი"
               type="text"
@@ -80,7 +61,6 @@ const AdminPageDetails = ({ subFieldObj }) => {
               placeholder={subFieldObj.sector}
             />
             <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
               id="field"
               label="დარგი"
               type="text"
@@ -88,7 +68,6 @@ const AdminPageDetails = ({ subFieldObj }) => {
               placeholder={subFieldObj.field}
             />
             <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
               id="subField"
               label="ქვედარგი"
               type="text"
@@ -109,7 +88,7 @@ const AdminPageDetails = ({ subFieldObj }) => {
               label="მინიმალური მოგება"
               type="number"
               name="minProfit"
-              placeholder={subFieldObj.minProfit.toFixed()}
+              placeholder={subFieldObj.minProfit.toFixed(3)}
             />
             <AdminPageDetailsItem
               editModeIsActive={editIsActive}
@@ -117,7 +96,7 @@ const AdminPageDetails = ({ subFieldObj }) => {
               label="მაქსიმალური მოგება"
               type="number"
               name="maxProfit"
-              placeholder={subFieldObj.maxProfit.toFixed()}
+              placeholder={subFieldObj.maxProfit.toFixed(3)}
             />
           </div>
           <div className="flex h-max">

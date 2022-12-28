@@ -3,17 +3,16 @@ import { db } from "../firebase.config";
 import AdminPageList from "./AdminPageList";
 import AdminPageListHeader from "./AdminPageListHeader";
 import Import from "../pages/Import";
-import GetData from "../Helpers/Hooks/GetData";
-const { Fragment, useState } = require("react");
+const { Fragment } = require("react");
 
-const AdminPanel = ({ setSubFields }) => {
-  const [sectors, setSectors] = useState([
+const AdminPanel = ({ setSubFields, sectors, fields, setFields }) => {
+  /* const [sectors, setSectors] = useState([
     "სოფლის მეურნეობა",
     "ვაჭრობა",
     "მომსახურება",
     "წარმოება",
   ]);
-  const [fields, setFields] = useState([]);
+  const [fields, setFields] = useState([]); */
 
   function removeDuplicateObjects(array) {
     const uniqueArray = array.filter((obj, index, self) => {
