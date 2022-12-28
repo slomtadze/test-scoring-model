@@ -2,9 +2,9 @@ import { useState } from "react";
 import AdminPageDetails from "./AdminPageDetails";
 
 const AdminPageMain = ({ subFields }) => {
-  const [selectedSubField, setSelectedSubField] = useState({});
+  const [selectedSubField, setSelectedSubField] = useState(undefined);
   const subFieldClickHandler = (event) => {
-    /*     const subField = subFields.find(
+    /* const subField = subFields.find(
       (subFieldObj) =>
         subFieldObj.subField.trim() === event.target.innerText.trim()
     );

@@ -1,7 +1,7 @@
 import AdminPanel from "../components/AdminPanel";
 import AdminPageMain from "../components/AdminPageMain";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const AdminPage = () => {
   const [subFields, setSubFields] = useState([]);
