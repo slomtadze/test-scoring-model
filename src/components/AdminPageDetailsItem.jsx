@@ -8,15 +8,6 @@ const AdminPageDetailsItem = ({
   placeholder,
   editModeIsActive,
 }) => {
-  const inputRef = useRef();
-
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.style.width =
-        inputRef.current.placeholder.offsetWidth + "px";
-    }
-  }, []);
-
   return (
     <div className="flex bg-slate-50 p-2 rounded-lg m-2">
       <div className="flex flex-col">
@@ -29,7 +20,6 @@ const AdminPageDetailsItem = ({
         {editModeIsActive ? (
           <Field
             className="bg-transparent px-2 placeholder-gray-500"
-            ref={inputRef}
             type={type}
             name={name}
             placeholder={`${placeholder}`}

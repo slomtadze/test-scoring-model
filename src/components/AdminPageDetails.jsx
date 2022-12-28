@@ -39,7 +39,23 @@ const AdminPageDetails = ({ subFieldObj }) => {
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
-      <Formik initialValues={initialValues} onSubmit={onFormSubmitHandler}>
+      <Formik
+        initialValues={{
+          region: subFieldObj.region,
+          sector: subFieldObj.sector,
+          field: subFieldObj.field,
+          subField: subFieldObj.subField,
+          minProfit: subFieldObj.minProfit,
+          maxProfit: subFieldObj.maxProfit,
+          exp: subFieldObj.exp || subFieldObj.opExp,
+          question_1: subFieldObj.question_1,
+          question_2: subFieldObj.question_2,
+          question_3: subFieldObj.question_3,
+          question_4: subFieldObj.question_4,
+          question_5: subFieldObj.question_5,
+        }}
+        onSubmit={onFormSubmitHandler}
+      >
         <Form className="grid grid-rows-2 gap-4 py-4 w-full">
           <AdminPageDetailsButtons
             editIsActive={editIsActive}
