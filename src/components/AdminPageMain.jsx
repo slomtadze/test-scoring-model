@@ -2,15 +2,15 @@ import { useState } from "react";
 import AdminPageDetails from "./AdminPageDetails";
 import "../style.css";
 
-const AdminPageMain = ({ subFields }) => {
+const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
   const [selectedSubField, setSelectedSubField] = useState(undefined);
   const subFieldClickHandler = (event) => {
     /* const subField = subFields.find(
       (subFieldObj) =>
         subFieldObj.subField.trim() === event.target.innerText.trim()
-    );
+    ); */
 
-    console.log(event.target.innerText, subField, subFields); */
+    console.log(event.target.innerText);
 
     setSelectedSubField(
       subFields.find(
@@ -37,7 +37,10 @@ const AdminPageMain = ({ subFields }) => {
         </div>
       </div>
       {selectedSubField ? (
-        <AdminPageDetails subFieldObj={selectedSubField} />
+        <AdminPageDetails
+          subFieldObj={selectedSubField}
+          uploadSubFieldHandler={uploadSubFieldHandler}
+        />
       ) : (
         <h1>ქვედარგი ვერ მოიძებნა</h1>
       )}
