@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import { Form, Formik } from "formik";
 
-const initialValues = {};
-
 const AdminPageDetails = ({ subFieldObj }) => {
-  console.log(subFieldObj);
+  const [editIsActive, setEditIsActive] = useState(false);
+
+  const setEditMode = () => {
+    setEditIsActive(true);
+  };
+  const exitEditMode = () => {
+    setEditIsActive(false);
+  };
 
   return (
-    <div className="flex flex-col items-center px-12 py-8">
+    <div className="flex flex-col items-center px-12 py-8 relative">
+      {editIsActive ? (
+        <div className="flex absolute bottom-8 left-16">
+          <button
+            className="bg-orange-300 px-4 py-[2px] rounded-lg mr-2"
+            onClick={setEditMode}
+          >
+            დადასტურება
+          </button>
+          <button
+            className="bg-orange-300 px-4 py-[2px] rounded-lg"
+            onClick={exitEditMode}
+          >
+            გაუქმება
+          </button>
+        </div>
+      ) : (
+        <button
+          className="absolute bottom-8 left-16 bg-orange-300 px-4 py-[2px] rounded-lg"
+          onClick={setEditMode}
+        >
+          შეცვლა
+        </button>
+      )}
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
@@ -65,7 +93,7 @@ const AdminPageDetails = ({ subFieldObj }) => {
               placeholder={subFieldObj.maxProfit.toFixed()}
             />
           </div>
-          <div className="flex">
+          <div className="flex h-max">
             <AdminPageDetailsItem
               id="1"
               label="კითხვა N1"

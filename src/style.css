@@ -1,0 +1,17 @@
+/* Style the scrollbar itself */
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #f5f5f5;
+}
+
+/* Style the thumb (the part of the scrollbar you can drag) */
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+/* Style the track (the part of the scrollbar that the thumb moves within) */
+::-webkit-scrollbar-track {
+  background-color: rgb(241 245 249);
+  border-radius: 10px;
+}
