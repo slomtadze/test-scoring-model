@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useState } from "react";
 import { Field } from "formik";
 
 const AdminPageDetailsItem = ({
@@ -8,25 +8,34 @@ const AdminPageDetailsItem = ({
   placeholder,
   editModeIsActive,
 }) => {
+  const [editIsActive, setEditIsActive] = useState(false);
+
+  const editHandler = () => {
+    setEditIsActive((prev) => !prev);
+  };
   return (
     <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-      <div className="flex flex-col">
+      <div className="relative flex flex-col">
         <label
           className="mb-2 pb-2 font-semibold border-b border-neutral-300"
           htmlFor={name}
         >
           {label}
         </label>
-        {editModeIsActive ? (
-          <Field
-            className="bg-transparent px-2 placeholder-gray-500"
-            type={type}
-            name={name}
-            placeholder={`${placeholder}`}
-          />
-        ) : (
-          <h1 className="text-sm text-gray-500">{placeholder}</h1>
-        )}
+        <h1
+          className="absolute top-0 right-0 cursor-pointer"
+          onClick={editHandler}
+        >
+          {editIsActive ? "X" : "Edit"}
+        </h1>
+        <Field
+          className="bg-transparent px-2 placeholder-gray-500 outline-none text-green-700"
+          id={name}
+          type={type}
+          name={name}
+          placeholder={`${placeholder}`}
+          disabled={!editIsActive ? true : false}
+        />
       </div>
     </div>
   );

@@ -3,6 +3,17 @@ import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
 
+const initialValues = {
+  subField: "",
+  minProfit: "",
+  maxProfit: "",
+  exp: "",
+  question_2: "",
+  question_3: "",
+  question_4: "",
+  question_5: "",
+};
+
 const AdminPageDetails = ({
   subFieldObj,
   editIsActive,
@@ -10,18 +21,24 @@ const AdminPageDetails = ({
   uploadSubFieldHandler,
 }) => {
   const setEditMode = () => {
-    console.log(subFieldObj.subField);
     setEditIsActive(true);
   };
   const exitEditMode = () => {
-    console.log(subFieldObj.subField);
     setEditIsActive(false);
   };
 
   const onFormSubmitHandler = (values) => {
-    setEditIsActive(false);
-    console.log(values);
-    uploadSubFieldHandler(values);
+    //console.log(values);
+    const updated = [];
+    for (const [key, value] of Object.entries(values)) {
+      if (value !== "") {
+        updated.push([key, value]);
+      }
+    }
+    const obj = Object.fromEntries(updated);
+
+    console.log({ ...subFieldObj, ...obj });
+    // uploadSubFieldHandler(values);
   };
 
   return (
@@ -29,25 +46,13 @@ const AdminPageDetails = ({
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
-      <Formik
-        initialValues={{
-          minProfit: subFieldObj.minProfit,
-          maxProfit: subFieldObj.maxProfit,
-          exp: subFieldObj.exp || subFieldObj.opExp,
-          question_1: subFieldObj.question_1,
-          question_2: subFieldObj.question_2,
-          question_3: subFieldObj.question_3,
-          question_4: subFieldObj.question_4,
-          question_5: subFieldObj.question_5,
-        }}
-        onSubmit={onFormSubmitHandler}
-      >
-        <Form className="grid grid-rows-2 gap-4 py-4 w-full">
-          <AdminPageDetailsButtons
+      <Formik initialValues={initialValues} onSubmit={onFormSubmitHandler}>
+        <Form className="grid grid-rows-2 gap-4 py-4 w-full relative">
+          {/* <AdminPageDetailsButtons
             editIsActive={editIsActive}
             exitEditMode={exitEditMode}
             setEditMode={setEditMode}
-          />
+          /> */}
           <div className="flex flex-wrap">
             <AdminPageDetailsItem
               id="region"
@@ -150,6 +155,7 @@ const AdminPageDetails = ({
               />
             )}
           </div>
+          <button className="absolute bottom-0 left-16">dadastureb</button>
         </Form>
       </Formik>
     </div>
