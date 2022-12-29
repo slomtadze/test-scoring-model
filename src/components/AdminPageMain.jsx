@@ -4,20 +4,22 @@ import "../style.css";
 
 const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
   const [selectedSubField, setSelectedSubField] = useState(undefined);
+  const [editIsActive, setEditIsActive] = useState(false);
+
   const subFieldClickHandler = (event) => {
     /* const subField = subFields.find(
       (subFieldObj) =>
         subFieldObj.subField.trim() === event.target.innerText.trim()
     ); */
 
-    console.log(event.target.innerText);
-
-    setSelectedSubField(
-      subFields.find(
-        (subFieldObj) =>
-          subFieldObj.subField.trim() === event.target.innerText.trim()
-      )
-    );
+    if (!editIsActive) {
+      setSelectedSubField(
+        subFields.find(
+          (subFieldObj) =>
+            subFieldObj.subField.trim() === event.target.innerText.trim()
+        )
+      );
+    }
   };
 
   return (
@@ -39,6 +41,8 @@ const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
       {selectedSubField ? (
         <AdminPageDetails
           subFieldObj={selectedSubField}
+          editIsActive={editIsActive}
+          setEditIsActive={setEditIsActive}
           uploadSubFieldHandler={uploadSubFieldHandler}
         />
       ) : (

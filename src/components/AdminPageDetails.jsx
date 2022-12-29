@@ -3,9 +3,12 @@ import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
 
-const AdminPageDetails = ({ subFieldObj, uploadSubFieldHandler }) => {
-  const [editIsActive, setEditIsActive] = useState(false);
-
+const AdminPageDetails = ({
+  subFieldObj,
+  editIsActive,
+  setEditIsActive,
+  uploadSubFieldHandler,
+}) => {
   const setEditMode = () => {
     console.log(subFieldObj.subField);
     setEditIsActive(true);
