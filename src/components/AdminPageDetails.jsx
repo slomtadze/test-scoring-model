@@ -29,16 +29,16 @@ const AdminPageDetails = ({
 
   const onFormSubmitHandler = (values) => {
     //console.log(values);
-    const updated = [];
+    const changedProperties = [];
     for (const [key, value] of Object.entries(values)) {
       if (value !== "") {
-        updated.push([key, value]);
+        changedProperties.push([key, value]);
       }
     }
-    const obj = Object.fromEntries(updated);
+    const changedPropertiesObjcect = Object.fromEntries(changedProperties);
+    const updatedObject = { ...subFieldObj, ...changedPropertiesObjcect };
 
-    console.log({ ...subFieldObj, ...obj });
-    // uploadSubFieldHandler(values);
+    uploadSubFieldHandler(updatedObject);
   };
 
   return (
