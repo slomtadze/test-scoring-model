@@ -3,28 +3,64 @@ import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
 
-const initialValues = {
-  subField: "",
-  minProfit: "",
-  maxProfit: "",
-  exp: "",
-  question_2: "",
-  question_3: "",
-  question_4: "",
-  question_5: "",
-};
-
 const AdminPageDetails = ({
   subFieldObj,
   editIsActive,
   setEditIsActive,
   uploadSubFieldHandler,
 }) => {
+  console.log("Details Render");
+
   const setEditMode = () => {
     setEditIsActive(true);
   };
   const exitEditMode = () => {
     setEditIsActive(false);
+  };
+  const initialValues = {
+    subField: "",
+    minProfit: "",
+    maxProfit: "",
+    exp: "",
+    question_2: "",
+    question_3: "",
+    question_4: "",
+    question_5: "",
+  };
+  const obj = subFieldObj;
+  const renderOptions = () => {
+    const array = [];
+    for (const [key, value] of Object.entries(subFieldObj)) {
+      if (!key.includes("question")) {
+        array.push(
+          <AdminPageDetailsItem
+            id={key}
+            label={key}
+            type="text"
+            name={key}
+            placeholder={value}
+          />
+        );
+      }
+    }
+    return array;
+  };
+  const renderQuestions = () => {
+    const array = [];
+    for (const [key, value] of Object.entries(subFieldObj)) {
+      if (key.includes("question")) {
+        array.push(
+          <AdminPageDetailsItem
+            id={key}
+            label={key}
+            type="text"
+            name={key}
+            placeholder={value}
+          />
+        );
+      }
+    }
+    return array;
   };
 
   const onFormSubmitHandler = (values) => {
@@ -53,108 +89,9 @@ const AdminPageDetails = ({
             exitEditMode={exitEditMode}
             setEditMode={setEditMode}
           /> */}
-          <div className="flex flex-wrap">
-            <AdminPageDetailsItem
-              id="region"
-              label="რეგიონი"
-              type="text"
-              name="region"
-              placeholder={subFieldObj.region}
-            />
-            <AdminPageDetailsItem
-              id="sector"
-              label="სექტორი"
-              type="text"
-              name="sector"
-              placeholder={subFieldObj.sector}
-            />
-            <AdminPageDetailsItem
-              id="field"
-              label="დარგი"
-              type="text"
-              name="field"
-              placeholder={subFieldObj.field}
-            />
-            <AdminPageDetailsItem
-              id="subField"
-              label="ქვედარგი"
-              type="text"
-              name="subField"
-              placeholder={subFieldObj.subField}
-            />
-            <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
-              id="exp"
-              label="ხარჯები"
-              type="number"
-              name="exp"
-              placeholder={subFieldObj.exp || subFieldObj.opExp}
-            />
-            <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
-              id="minProfit"
-              label="მინიმალური მოგება"
-              type="number"
-              name="minProfit"
-              placeholder={subFieldObj.minProfit.toFixed(3)}
-            />
-            <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
-              id="maxProfit"
-              label="მაქსიმალური მოგება"
-              type="number"
-              name="maxProfit"
-              placeholder={subFieldObj.maxProfit.toFixed(3)}
-            />
-          </div>
-          <div className="flex h-max">
-            <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
-              id="question_1"
-              label="კითხვა N1"
-              type="text"
-              name="question_1"
-              placeholder={subFieldObj.question_1}
-            />
-            <AdminPageDetailsItem
-              editModeIsActive={editIsActive}
-              id="question_2"
-              label="კითხვა N2"
-              type="text"
-              name="question_2"
-              placeholder={subFieldObj.question_2}
-            />
-            {subFieldObj.question_3 && (
-              <AdminPageDetailsItem
-                editModeIsActive={editIsActive}
-                id="question_3"
-                label="კითხვა N3"
-                type="text"
-                name="question_3"
-                placeholder={subFieldObj.question_3}
-              />
-            )}
-            {subFieldObj.question_4 && (
-              <AdminPageDetailsItem
-                editModeIsActive={editIsActive}
-                id="question_4"
-                label="კითხვა N4"
-                type="text"
-                name="question_4"
-                placeholder={subFieldObj.question_4}
-              />
-            )}
-            {subFieldObj.question_5 && (
-              <AdminPageDetailsItem
-                editModeIsActive={editIsActive}
-                id="question_5"
-                label="კითხვა N5"
-                type="text"
-                name="question_5"
-                placeholder={subFieldObj.question_5}
-              />
-            )}
-          </div>
+
+          <div className="flex flex-wrap">{renderOptions()}</div>
+          <div className="flex h-max">{renderQuestions()}</div>
           <button className="absolute bottom-0 left-16">dadastureb</button>
         </Form>
       </Formik>

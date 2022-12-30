@@ -16,11 +16,17 @@ const AdminPage = () => {
   const [subFields, setSubFields] = useState([]);
 
   const uploadSubFieldHandler = (modifedSubFieldObj) => {
-    const existingObj = fields.find(
+    const existingObjIndex = fields.findIndex(
       (existing) => existing.subField === modifedSubFieldObj.subField
     );
-    const updatedData = { ...fields, modifedSubFieldObj };
-    console.log(modifedSubFieldObj);
+    const fillteredFields = fields.filter(
+      (field) => field.subField !== modifedSubFieldObj.subField
+    );
+    const updatedFields = [...fillteredFields];
+    updatedFields.splice(existingObjIndex, 1, modifedSubFieldObj);
+
+    console.log(updatedFields);
+
     /* await setDoc(doc(db, "სექტორი", modifedSubFieldObj.field), {
       fields: getSector(data, "სოფლის მეურნეობა"),
     }); */
