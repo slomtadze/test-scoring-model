@@ -27,7 +27,7 @@ const AdminPageDetails = ({
     question_4: "",
     question_5: "",
   };
-  const obj = subFieldObj;
+  
   const renderOptions = () => {
     const array = [];
     for (const [key, value] of Object.entries(subFieldObj)) {

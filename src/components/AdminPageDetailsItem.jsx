@@ -14,8 +14,10 @@ const AdminPageDetailsItem = ({
   const [valueIsShown, setValueIsShown] = useState(false);
 
   const showValueHandler = () => {
-    console.log("changes");
-    setValueIsShown(true);
+    if(!editIsActive){
+      setValueIsShown(true);
+    }
+    
   };
   const hideValueHandler = () => {
     setValueIsShown(false);
@@ -29,7 +31,7 @@ const AdminPageDetailsItem = ({
   };
   return (
     <div className="flex bg-slate-50 p-2 rounded-lg m-2">
-      <div className="relative flex flex-col" onMouseLeave={hideValueHandler}>
+      <div className="relative flex flex-col" >
         <label
           className="mb-2 pb-2 font-semibold border-b border-neutral-300"
           htmlFor={name}
@@ -46,6 +48,7 @@ const AdminPageDetailsItem = ({
             <div onClick={editHandler}>Edit</div>
           )}
         </div>
+        <div onMouseEnter={showValueHandler} onMouseLeave={hideValueHandler}>
         <Field
           className="bg-transparent px-2 placeholder-gray-500 outline-none text-green-700"
           id={name}
@@ -53,10 +56,11 @@ const AdminPageDetailsItem = ({
           name={name}
           placeholder={`${placeholder}`}
           disabled={!editIsActive ? true : false}
-          onMouseEnter={showValueHandler}
+          
         />
+        </div >
         {valueIsShown && (
-          <div className="absolute z-50 text-sm italic bottom-0 left-0 translate-x-[25%] translate-y-full min-w-min bg-black text-white px-4 py-2 rounded-xl">
+          <div className="absolute z-50 text-sm italic bottom-0 left-0 translate-x-[25%] translate-y-[110%] min-w-min bg-gray-700 text-white px-4 py-2 rounded-xl">
             {placeholder}
           </div>
         )}
