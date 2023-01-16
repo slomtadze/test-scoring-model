@@ -6,14 +6,7 @@ import Import from "../pages/Import";
 const { Fragment } = require("react");
 
 const AdminPanel = ({ setSubFields, sectors, fields, setFields }) => {
-  /* const [sectors, setSectors] = useState([
-    "სოფლის მეურნეობა",
-    "ვაჭრობა",
-    "მომსახურება",
-    "წარმოება",
-  ]);
-  const [fields, setFields] = useState([]); */
-
+ 
   function removeDuplicateObjects(array) {
     const uniqueArray = array.filter((obj, index, self) => {
       return self.map((obj) => obj.field).indexOf(obj.field) === index;

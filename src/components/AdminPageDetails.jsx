@@ -22,6 +22,7 @@ const AdminPageDetails = ({
     minProfit: "",
     maxProfit: "",
     exp: "",
+    question_1: "",
     question_2: "",
     question_3: "",
     question_4: "",
@@ -31,7 +32,11 @@ const AdminPageDetails = ({
   const renderOptions = () => {
     const array = [];
     for (const [key, value] of Object.entries(subFieldObj)) {
-      if (!key.includes("question")) {
+      if (
+        !key.includes("question") &&
+        !key.includes("formula") &&
+        !key.includes("sector")
+      ) {
         array.push(
           <AdminPageDetailsItem
             id={key}
