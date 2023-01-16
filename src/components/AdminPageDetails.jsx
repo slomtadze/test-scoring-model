@@ -27,7 +27,7 @@ const AdminPageDetails = ({
     question_4: "",
     question_5: "",
   };
-  
+
   const renderOptions = () => {
     const array = [];
     for (const [key, value] of Object.entries(subFieldObj)) {
@@ -78,21 +78,27 @@ const AdminPageDetails = ({
   };
 
   return (
-    <div className="flex flex-col items-center px-12 py-8 relative">
+    <div className="flex flex-col items-center px-12 py-8">
       <h1 className="text-2xl font-medium text-amber-900 ">
         {subFieldObj.subField}
       </h1>
       <Formik initialValues={initialValues} onSubmit={onFormSubmitHandler}>
-        <Form className="grid grid-rows-2 gap-4 py-4 w-full relative">
+        <Form className="flex flex-col py-4 w-full relative">
           {/* <AdminPageDetailsButtons
             editIsActive={editIsActive}
             exitEditMode={exitEditMode}
             setEditMode={setEditMode}
           /> */}
 
-          <div className="flex flex-wrap">{renderOptions()}</div>
-          <div className="flex h-max">{renderQuestions()}</div>
-          <button className="absolute bottom-0 left-16">dadastureb</button>
+          <div className="flex flex-wrap h-2/3 overflow-y-scroll scrollbar-scroll">
+            {renderOptions()}
+          </div>
+          <div className="flex h-1/3 overflow-y-scroll scrollbar-scroll">
+            {renderQuestions()}
+          </div>
+          <button className="absolute left-2 -bottom-8 py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white">
+            დადასტურება
+          </button>
         </Form>
       </Formik>
     </div>
