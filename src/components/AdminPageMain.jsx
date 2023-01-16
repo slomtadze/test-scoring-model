@@ -46,7 +46,7 @@ const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
           uploadSubFieldHandler={uploadSubFieldHandler}
         />
       ) : (
-        <h1>ქვედარგი ვერ მოიძებნა</h1>
+        <h1 className="text-center mt-4 text-red-500">ქვედარგი ვერ მოიძებნა</h1>
       )}
     </div>
   );

@@ -38,15 +38,4 @@ const AdminPageDetailsButtons = ({
 
 export default AdminPageDetailsButtons;
 
-/* const AdminPageDetailsButtons = () ={
-     return (
-         
-         {editIsActive ? (
-         
-        ) : (
-         
-        )}
-     )
- }
- 
- export default AdminPageDetailsButtons */
+
