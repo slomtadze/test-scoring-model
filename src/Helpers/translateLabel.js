@@ -18,10 +18,9 @@ export const translateLabel = (label) => {
   } else if (label === "region") {
     return "რეგიონი";
   } else if (label === "question_1") {
-    console.log(label);
     return "კითხვა N1";
   } else if (label === "question_2") {
-    return "კითხვა N1";
+    return "კითხვა N2";
   } else if (label === "question_3") {
     return "კითხვა N3";
   } else if (label === "question_4") {

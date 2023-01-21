@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from "react";
 import AdminPageDetailsItem from "./AdminPageDetailsItem";
-import AdminPageDetailsButtons from "./AdminPageDetailsButtons";
 import { Form, Formik } from "formik";
+import uniqid from "uniqid";
 
 const AdminPageDetails = ({
   subFieldObj,
-  editIsActive,
   setEditIsActive,
   uploadSubFieldHandler,
 }) => {
-  console.log("Details Render");
-
   const setEditMode = () => {
     setEditIsActive(true);
   };
   const exitEditMode = () => {
     setEditIsActive(false);
   };
+
   const initialValues = {
+    sector: "",
+    field: "",
+    formula: "",
+    profit: "",
+    region: "",
     subField: "",
     minProfit: "",
     maxProfit: "",
     exp: "",
+    question_1: "",
     question_2: "",
     question_3: "",
     question_4: "",
@@ -30,10 +34,12 @@ const AdminPageDetails = ({
 
   const renderOptions = () => {
     const array = [];
+
     for (const [key, value] of Object.entries(subFieldObj)) {
       if (!key.includes("question")) {
         array.push(
           <AdminPageDetailsItem
+            key={uniqid()}
             id={key}
             label={key}
             type="text"
@@ -51,6 +57,7 @@ const AdminPageDetails = ({
       if (key.includes("question")) {
         array.push(
           <AdminPageDetailsItem
+            key={uniqid()}
             id={key}
             label={key}
             type="text"
@@ -63,9 +70,10 @@ const AdminPageDetails = ({
     return array;
   };
 
-  const onFormSubmitHandler = (values) => {
-    //console.log(values);
-    const changedProperties = [];
+  const onFormSubmitHandler = (values, onSubmitProps) => {
+    console.log(values, onSubmitProps);
+    onSubmitProps.resetForm();
+    /*     const changedProperties = [];
     for (const [key, value] of Object.entries(values)) {
       if (value !== "") {
         changedProperties.push([key, value]);
@@ -74,7 +82,7 @@ const AdminPageDetails = ({
     const changedPropertiesObjcect = Object.fromEntries(changedProperties);
     const updatedObject = { ...subFieldObj, ...changedPropertiesObjcect };
 
-    uploadSubFieldHandler(updatedObject);
+    uploadSubFieldHandler(updatedObject); */
   };
 
   return (
@@ -84,19 +92,16 @@ const AdminPageDetails = ({
       </h1>
       <Formik initialValues={initialValues} onSubmit={onFormSubmitHandler}>
         <Form className="flex flex-col py-4 w-full relative">
-          {/* <AdminPageDetailsButtons
-            editIsActive={editIsActive}
-            exitEditMode={exitEditMode}
-            setEditMode={setEditMode}
-          /> */}
-
           <div className="flex flex-wrap h-2/3 overflow-y-scroll scrollbar-scroll">
             {renderOptions()}
           </div>
           <div className="flex h-1/3 overflow-y-scroll scrollbar-scroll">
             {renderQuestions()}
           </div>
-          <button className="absolute left-2 -bottom-8 py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white">
+          <button
+            type="submit"
+            className="absolute left-2 -bottom-8 py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white"
+          >
             დადასტურება
           </button>
         </Form>

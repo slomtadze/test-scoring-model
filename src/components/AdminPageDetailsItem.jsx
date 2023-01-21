@@ -2,13 +2,7 @@ import { useState } from "react";
 import { Field } from "formik";
 import { translateLabel } from "../Helpers/translateLabel";
 
-const AdminPageDetailsItem = ({
-  label,
-  type,
-  name,
-  placeholder,
-  resetForm,
-}) => {
+const AdminPageDetailsItem = ({ label, type, name, placeholder }) => {
   const [editIsActive, setEditIsActive] = useState(false);
   const [valueIsShown, setValueIsShown] = useState(false);
 
@@ -22,12 +16,12 @@ const AdminPageDetailsItem = ({
   };
 
   const editHandler = () => {
-    setEditIsActive((prev) => !prev);
+    setEditIsActive(true);
   };
   const cancelEditHandler = () => {
-    resetForm();
-    setEditIsActive((prev) => !prev);
+    setEditIsActive(false);
   };
+
   return (
     <div className="flex bg-slate-50 p-2 rounded-lg m-2">
       <div className="relative flex flex-col">
@@ -53,12 +47,12 @@ const AdminPageDetailsItem = ({
             id={name}
             type={type}
             name={name}
-            placeholder={`${placeholder}`}
+            placeholder={placeholder}
             disabled={!editIsActive ? true : false}
           />
         </div>
         {valueIsShown && (
-          <div className="absolute z-50 text-sm italic bottom-0 left-0 translate-x-[25%] translate-y-[110%] min-w-min bg-gray-700 text-white px-4 py-2 rounded-xl">
+          <div className="absolute z-50 text-sm italic top-0 left-0 translate-x-[25%] min-w-min bg-gray-700 text-white px-4 py-2 rounded-xl">
             {placeholder}
           </div>
         )}
