@@ -4,15 +4,12 @@ import "../style.css";
 
 const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
   const [selectedSubField, setSelectedSubField] = useState(undefined);
-  const [editIsActive, setEditIsActive] = useState(false);
+  const [formEditIsActive, setFormEditIsActive] = useState(false);
 
   const subFieldClickHandler = (event) => {
-    /* const subField = subFields.find(
-      (subFieldObj) =>
-        subFieldObj.subField.trim() === event.target.innerText.trim()
-    ); */
-
-    if (!editIsActive) {
+    if (formEditIsActive) {
+      return;
+    } else if (!formEditIsActive) {
       setSelectedSubField(
         subFields.find(
           (subFieldObj) =>
@@ -42,8 +39,8 @@ const AdminPageMain = ({ subFields, uploadSubFieldHandler }) => {
       {selectedSubField ? (
         <AdminPageDetails
           subFieldObj={selectedSubField}
-          editIsActive={editIsActive}
-          setEditIsActive={setEditIsActive}
+          formEditIsActive={formEditIsActive}
+          setFormEditIsActive={setFormEditIsActive}
           uploadSubFieldHandler={uploadSubFieldHandler}
         />
       ) : (

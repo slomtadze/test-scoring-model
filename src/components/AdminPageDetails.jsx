@@ -2,39 +2,28 @@ import React, { useState, useEffect } from "react";
 import AdminPageDetailsItem from "./AdminPageDetailsItem";
 import { Form, Formik } from "formik";
 import uniqid from "uniqid";
+import { useCallback } from "react";
 
-const AdminPageDetails = ({
-  subFieldObj,
-  setEditIsActive,
-  uploadSubFieldHandler,
-}) => {
-  const setEditMode = () => {
-    setEditIsActive(true);
-  };
-  const exitEditMode = () => {
-    setEditIsActive(false);
-  };
+const initialValues = {
+  sector: "",
+  field: "",
+  formula: "",
+  profit: "",
+  region: "",
+  subField: "",
+  minProfit: "",
+  maxProfit: "",
+  exp: "",
+  question_1: "",
+  question_2: "",
+  question_3: "",
+  question_4: "",
+  question_5: "",
+};
 
-  const initialValues = {
-    sector: "",
-    field: "",
-    formula: "",
-    profit: "",
-    region: "",
-    subField: "",
-    minProfit: "",
-    maxProfit: "",
-    exp: "",
-    question_1: "",
-    question_2: "",
-    question_3: "",
-    question_4: "",
-    question_5: "",
-  };
-
-  const renderOptions = () => {
+const AdminPageDetails = ({ subFieldObj, setFormEditIsActive }) => {
+  const renderOptions = useCallback(() => {
     const array = [];
-
     for (const [key, value] of Object.entries(subFieldObj)) {
       if (!key.includes("question")) {
         array.push(
@@ -45,13 +34,14 @@ const AdminPageDetails = ({
             type="text"
             name={key}
             placeholder={value}
+            setFormEditIsActive={setFormEditIsActive}
           />
         );
       }
     }
     return array;
-  };
-  const renderQuestions = () => {
+  }, [subFieldObj]);
+  const renderQuestions = useCallback(() => {
     const array = [];
     for (const [key, value] of Object.entries(subFieldObj)) {
       if (key.includes("question")) {
@@ -63,17 +53,18 @@ const AdminPageDetails = ({
             type="text"
             name={key}
             placeholder={value}
+            setFormEditIsActive={setFormEditIsActive}
           />
         );
       }
     }
     return array;
-  };
+  }, [subFieldObj]);
 
-  const onFormSubmitHandler = (values, onSubmitProps) => {
+  const onFormSubmitHandler = useCallback((values, onSubmitProps) => {
     console.log(values, onSubmitProps);
     onSubmitProps.resetForm();
-    /*     const changedProperties = [];
+    const changedProperties = [];
     for (const [key, value] of Object.entries(values)) {
       if (value !== "") {
         changedProperties.push([key, value]);
@@ -82,8 +73,10 @@ const AdminPageDetails = ({
     const changedPropertiesObjcect = Object.fromEntries(changedProperties);
     const updatedObject = { ...subFieldObj, ...changedPropertiesObjcect };
 
-    uploadSubFieldHandler(updatedObject); */
-  };
+    /* uploadSubFieldHandler(updatedObject); */
+
+    console.log(updatedObject);
+  }, []);
 
   return (
     <div className="flex flex-col items-center px-12 py-8">
@@ -98,12 +91,20 @@ const AdminPageDetails = ({
           <div className="flex h-1/3 overflow-y-scroll scrollbar-scroll">
             {renderQuestions()}
           </div>
-          <button
-            type="submit"
-            className="absolute left-2 -bottom-8 py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white"
-          >
-            დადასტურება
-          </button>
+          <div className="flex">
+            <button
+              type="reset"
+              className="py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white"
+            >
+              გასუფთავება
+            </button>
+            <button
+              type="submit"
+              className="py-2 px-4 bg-orange-300 rounded-xl hover:bg-orange-500 duration-150 hover:text-white"
+            >
+              დადასტურება
+            </button>
+          </div>
         </Form>
       </Formik>
     </div>

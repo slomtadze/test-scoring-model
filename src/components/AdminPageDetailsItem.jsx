@@ -1,29 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect, memo } from "react";
 import { Field } from "formik";
 import { translateLabel } from "../Helpers/translateLabel";
 
-const AdminPageDetailsItem = ({ label, type, name, placeholder }) => {
-  const [editIsActive, setEditIsActive] = useState(false);
-  const [valueIsShown, setValueIsShown] = useState(false);
-
-  const showValueHandler = () => {
-    if (!editIsActive) {
-      setValueIsShown(true);
-    }
-  };
-  const hideValueHandler = () => {
-    setValueIsShown(false);
-  };
-
-  const editHandler = () => {
-    setEditIsActive(true);
-  };
-  const cancelEditHandler = () => {
-    setEditIsActive(false);
-  };
+const AdminPageDetailsItem = (props) => {
+  const { setFormEditIsActive, label, type, name, placeholder } = props;
 
   return (
-    <div className="flex bg-slate-50 p-2 rounded-lg m-2">
+    <div className={`flex bg-slate-50 p-2 rounded-lg m-2 `}>
       <div className="relative flex flex-col">
         <label
           className="mb-2 pb-2 font-semibold border-b border-neutral-300"
@@ -31,34 +14,19 @@ const AdminPageDetailsItem = ({ label, type, name, placeholder }) => {
         >
           {translateLabel(label)}
         </label>
-        <div className="absolute top-0 right-0 cursor-pointer">
-          {editIsActive ? (
-            <div>
-              <span className="mr-2">sb</span>
-              <span onClick={cancelEditHandler}>cns</span>
-            </div>
-          ) : (
-            <div onClick={editHandler}>Edit</div>
-          )}
-        </div>
-        <div onMouseEnter={showValueHandler} onMouseLeave={hideValueHandler}>
+        <div>
           <Field
             className="bg-transparent px-2 placeholder-gray-500 outline-none text-green-700"
             id={name}
             type={type}
             name={name}
             placeholder={placeholder}
-            disabled={!editIsActive ? true : false}
+            /* disabled={!editIsActive ? true : false} */
           />
         </div>
-        {valueIsShown && (
-          <div className="absolute z-50 text-sm italic top-0 left-0 translate-x-[25%] min-w-min bg-gray-700 text-white px-4 py-2 rounded-xl">
-            {placeholder}
-          </div>
-        )}
       </div>
     </div>
   );
 };
 
-export default AdminPageDetailsItem;
+export default memo(AdminPageDetailsItem);
